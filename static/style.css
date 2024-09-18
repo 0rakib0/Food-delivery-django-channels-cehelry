@@ -1,0 +1,50 @@
+
+.nofitication-logo{
+    position: relative;
+    margin-right: 5rem;
+}
+
+
+.nofitication-logo img{
+    width: 2rem;
+    height: 2rem;
+    background-color: rgb(254, 62, 28);
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.nofitication-logo span{
+    position:absolute;
+    top: -.5rem;
+    left: 2rem;
+    font-size: 15px;
+    color: rgb(254, 62, 28);
+    font-weight: 800;
+    
+}
+
+.notification-bolx{
+    position: relative;
+}
+
+.notification-items{
+    position: absolute;
+    width: 16rem;
+    padding: 10px 5px;
+    list-style: none;
+    top: 3.3rem;
+    left: -6rem;
+    font-size: 15px;
+    border: 1px solid gray;
+    border-radius: 0 0 8px 8px;
+
+}
+.notification-items hr{
+    border: 1px solid rgba(0, 0, 0, 0.219);
+    margin: 7px 0;
+}
+
+
+.notification-items li{
+    line-height: 1.5rem
+}
