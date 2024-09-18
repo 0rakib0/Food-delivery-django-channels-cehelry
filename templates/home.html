@@ -19,7 +19,7 @@
         <div className="card-body">
             <h2 className="card-title font-semibold">{{product.title}}</h2>
             <p>Pric: {{product.price}} tk</p>
-            <button style="background-color: tomato; width: 100%;border-radius: 5px;color: white;">Buy Now</button>
+            <button onclick="OrderFunc({{product.id}})" style="background-color: tomato; width: 100%;border-radius: 5px;color: white;">Buy Now</button>
         </div>
     </div>
     {% endfor %}

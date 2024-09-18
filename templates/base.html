@@ -30,6 +30,7 @@
                     class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                     <li><a>Home</a></li>
                     <li><a>Shop</a></li>
+                    <li><a>Your Orders</a></li>
                     <li><a>About</a></li>
                     <li><a>Contact</a></li>
                 </ul>
@@ -43,6 +44,7 @@
             <ul class="menu menu-horizontal px-1">
                 <li><a>Home</a></li>
                 <li><a>Shop</a></li>
+                <li><a>Your Orders</a></li>
                 <li><a>About</a></li>
                 <li><a>Contact</a></li>
             </ul>
@@ -79,7 +81,34 @@
 
     {% endblock %}
 
-    <h1>Footer section</h1>
+    <footer class="footer bg-neutral text-neutral-content p-10 mt-12">
+        <nav>
+            <h6 class="footer-title">Services</h6>
+            <a class="link link-hover">Branding</a>
+            <a class="link link-hover">Design</a>
+            <a class="link link-hover">Marketing</a>
+            <a class="link link-hover">Advertisement</a>
+        </nav>
+        <nav>
+            <h6 class="footer-title">Company</h6>
+            <a class="link link-hover">About us</a>
+            <a class="link link-hover">Contact</a>
+            <a class="link link-hover">Jobs</a>
+            <a class="link link-hover">Press kit</a>
+        </nav>
+        <nav>
+            <h6 class="footer-title">Legal</h6>
+            <a class="link link-hover">Terms of use</a>
+            <a class="link link-hover">Privacy policy</a>
+            <a class="link link-hover">Cookie policy</a>
+        </nav>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"
+        integrity="sha512-DdX/YwF5e41Ok+AI81HI8f5/5UsoxCVT9GKYZRIzpLxb8Twz4ZwPPX+jQMwMhNQ9b5+zDEefc+dcvQoPWGNZ3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
 
     <script src="{% static 'index.js' %}"></script>
 </body>

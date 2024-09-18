@@ -23,3 +23,17 @@ document.getElementById('logo-popup').addEventListener('click', ()=>{
     
 })
 
+
+
+
+function OrderFunc(id){
+    axios.post('/order-api/', {'id':id})
+        .then(res =>{
+           if(res.data.status=true){
+            alert("Your Order succefully receive!")
+           }
+           else{
+            alert("Order not submit, something went wrong!")
+           }
+        })
+}
