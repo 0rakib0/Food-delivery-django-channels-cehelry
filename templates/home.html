@@ -7,18 +7,19 @@
     <p class="text-red-500 border-b-2 border-red-400 pb-2">ITEM YOUR LIKE</p>
     <h3 class="text-2xl pt-2">Fast Food</h3>
 </div>
-<div class="mt-12 flex col-4">
+<div class="mt-12 grid grid-cols-4 gap-2 w-11/12 mx-auto">
     {% for product in products %}
-    <div className="card bg-base-100 shadow-xl">
+    <div className="card bg-red-200 shadow-xl p-2"
+        style="border: 1px solid rgba(255, 136, 136, 0.715); padding: 10px; border-radius: 8px;">
         <figure>
-            <img src={{product.image.url}} alt="Shoes" />
+            <div class="card-image">
+                <img src={{product.image.url}} alt="Shoes" />
+            </div>
         </figure>
         <div className="card-body">
-            <h2 className="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div className="card-actions justify-end">
-                <button className="btn btn-primary">Buy Now</button>
-            </div>
+            <h2 className="card-title font-semibold">{{product.title}}</h2>
+            <p>Pric: {{product.price}} tk</p>
+            <button style="background-color: tomato; width: 100%;border-radius: 5px;color: white;">Buy Now</button>
         </div>
     </div>
     {% endfor %}
