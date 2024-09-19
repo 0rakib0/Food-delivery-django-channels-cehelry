@@ -11,14 +11,17 @@
             <p>Product: {{order.item.title}}</p>
             <p>Order ID: {{order.order_id}}</p>
             <p>Total Price: {{order.amount}}</p>
-            <p>Order Status: {{order.order_status}}</p>
+            <p>Order Status: <span id="order-status">{{order.order_status}}</span></p>
         </div>
     </div>
     <hr class="my-6">
     <p class="text-xl mb-3">Order Live Status:</p>
     <div>
-        <progress className="progress progress-info" style="width: 100%;" value="60" max="100"></progress>
+        <progress id="progress-id" className="progress progress-info" style="width: 100%;" value="{{progress_percentage}}" max="100"></progress>
     </div>
+
+    {{order.order_id|json_script:"order-id"}}
+
 </div>
 
 {% endblock %}

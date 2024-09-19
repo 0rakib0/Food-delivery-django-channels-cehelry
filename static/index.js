@@ -1,3 +1,38 @@
+
+// handle websocket connection....
+
+
+const orderId = JSON.parse(document.getElementById('order-id').textContent)
+let ws = new WebSocket(`ws://127.0.0.1:8000/ws/food-delivery/${orderId}/`)
+
+
+ws.onopen = e =>{
+    
+    console.log("Websocket Succefully connected....")
+}
+
+ws.onmessage = e =>{
+
+    const data = JSON.parse(e.data)
+    console.log(data)
+    document.getElementById('order-status').innerText = data.status
+    document.getElementById('progress-id').value = data.progress
+
+}
+
+
+ws.onerror = e =>{
+    console.log(e)
+}
+
+ws.onclose = e =>{
+    console.log("Websocket conecction lost....")
+}
+
+
+
+
+
 document.addEventListener('click', (event) => {
     const notificationItem = document.getElementById('noti-item');
     const logoPopup = document.getElementById('logo-popup');
@@ -37,3 +72,4 @@ function OrderFunc(id){
            }
         })
 }
+

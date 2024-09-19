@@ -40,10 +40,10 @@ def OrderApi(request):
     
 def OrderView(request, id):
     user = request.user 
-    print(id)
+    progress_percentage = Order.get_percentage(id)
     try:
         order = Order.objects.filter(id=id, user=user).first()
     except Order.DoesNotExist:
         pass
     
-    return render(request, 'order_view.html', context={'order':order})
+    return render(request, 'order_view.html', context={'order':order, 'progress_percentage':progress_percentage})

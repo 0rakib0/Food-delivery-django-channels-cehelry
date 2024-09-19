@@ -2,6 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 import string
 import random
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
+import json
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 # Create your models here.
 
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
@@ -48,6 +53,29 @@ class Order(models.Model):
     def __str__(self) -> str:
         return self.item.title
     
+    
+    @staticmethod
+    def get_percentage(id):
+        instance = Order.objects.filter(id=id).first()
+        
+        progres_percentage = 0  
+        if instance.order_status == 'order_receive':
+            progres_percentage = 20
+        
+        if instance.order_status == 'breking':
+            progres_percentage = 40
+        
+        if instance.order_status == 'breked':
+            progres_percentage = 60
+        
+        if instance.order_status == 'out_of_delivery':
+            progres_percentage = 80
+            
+        if instance.order_status == 'customar_receive':
+            progres_percentage = 100
+            
+        return progres_percentage
+    
 
 class Notification(models.Model):
     notification = models.CharField(max_length=260),
@@ -69,3 +97,44 @@ class OfferMail(models.Model):
     
     def __str__(self) -> str:
         return self.mail_subject
+    
+    
+
+@receiver(post_save, sender=Order)
+def order_status_handler(sender, instance, created, **kwargs):
+    channel_layer = get_channel_layer()
+    
+    if not created:
+        data = {}
+        data['status'] = instance.order_status
+        progres_percentage = 0
+        
+        if instance.order_status == 'order_receive':
+            progres_percentage = 20
+        
+        if instance.order_status == 'breking':
+            progres_percentage = 40
+        
+        if instance.order_status == 'breked':
+            progres_percentage = 60
+        
+        if instance.order_status == 'out_of_delivery':
+            progres_percentage = 80
+            
+        if instance.order_status == 'customar_receive':
+            progres_percentage = 100
+            
+        
+        data['progress'] = progres_percentage
+        
+        test = 'order_%s' % instance.order_id
+        print('>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<')
+        print(test)
+      
+        async_to_sync(channel_layer.group_send)(
+            'order_%s' % instance.order_id,
+            {
+                'type':'order.status',
+                'data':data
+            }
+        )
