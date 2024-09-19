@@ -12,6 +12,15 @@ def Home(request):
     return render(request, 'home.html', context={'products':products})
 
 
+def OrderList(request):
+    user = request.user 
+    try:
+        order = Order.objects.filter(user=user)
+    except Order.DoesNotExist:
+        pass      
+    return render(request, 'orderlist.html', context={'order_list':order})  
+
+
 @csrf_exempt
 def OrderApi(request):
     data = json.loads(request.body)
@@ -28,3 +37,13 @@ def OrderApi(request):
         return JsonResponse({'msg':'Order succefully receive', 'status':True})
     except Product.DoesNotExist():
         return JsonResponse ({'msg':'Something went rong!', 'status':False})
+    
+def OrderView(request, id):
+    user = request.user 
+    print(id)
+    try:
+        order = Order.objects.filter(id=id, user=user).first()
+    except Order.DoesNotExist:
+        pass
+    
+    return render(request, 'order_view.html', context={'order':order})
