@@ -16,9 +16,15 @@ ws.onmessage = e =>{
     const data = JSON.parse(e.data)
     console.log(data)
     document.getElementById('order-status').innerText = data.status
-    document.getElementById('progress-id').value = data.progress
+    let progres = document.getElementById('progress-id')
+    progres.value = data.progress
+    // if (progres === 100){
+    //     progres.classList.add('progress-success')
+    //     progres.classList.remove('progress-info')
+    // }
 
 }
+
 
 
 ws.onerror = e =>{

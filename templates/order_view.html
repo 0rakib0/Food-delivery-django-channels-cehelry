@@ -17,7 +17,7 @@
     <hr class="my-6">
     <p class="text-xl mb-3">Order Live Status:</p>
     <div>
-        <progress id="progress-id" className="progress progress-info" style="width: 100%;" value="{{progress_percentage}}" max="100"></progress>
+        <progress id="progress-id" className="progress progress-danger" style="width: 100%;" value="{{progress_percentage}}" max="100"></progress>
     </div>
 
     {{order.order_id|json_script:"order-id"}}
