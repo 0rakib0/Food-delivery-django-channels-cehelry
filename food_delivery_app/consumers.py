@@ -57,23 +57,18 @@ class SendNotification(AsyncConsumer):
             'type':'websocket.accept'
         })
         
-        await self.send({
-            'type':'websocket.send',
-            'text':'this message from notification send consumer'
-        })
     
     async def websocket_receive(self, event):
         print("Websocket get message...", event)
         
         
-    # async def order_status(self, event):
+    async def notifiction_send(self, event):
         
-    #     order_data = event['data']
-        
-    #     await self.send({
-    #         'type':'websocket.send',
-    #         'text':json.dumps(order_data)
-    #     })
+        order_data = event['data']
+        await self.send({
+            'type':'websocket.send',
+            'text':json.dumps(order_data)
+        })
         
         
     async def websocket_disconnect(self, event):
