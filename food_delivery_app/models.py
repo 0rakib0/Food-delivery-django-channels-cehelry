@@ -7,6 +7,7 @@ from asgiref.sync import async_to_sync
 import json
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from django_celery_beat.models import PeriodicTask, CrontabSchedule
 # Create your models here.
 
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
@@ -138,3 +139,17 @@ def order_status_handler(sender, instance, created, **kwargs):
                 'data':data
             }
         )
+        
+    
+    
+@receiver(post_save, sender=Notification)
+def order_status_handler(sender, instance, created, **kwargs):
+    if created:
+        schedule, creat = CrontabSchedule.objects.get_or_create(
+                            hour=instance.schedule_date.hour, 
+                            minute=instance.schedule_date.minute, 
+                            day_of_month=instance.schedule_date.day,
+                            month_of_year=instance.schedule_date.month
+                            )
+        
+        task = PeriodicTask.objects.create(crontab=schedule, name='notification-' + str(instance.id), task='food_delivery_app.task.SendNotification')
