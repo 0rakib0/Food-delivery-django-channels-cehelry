@@ -86,7 +86,7 @@ class Notification(models.Model):
     
     
     def __str__(self) -> str:
-        return self.notification
+        return self.notification_title
     
 
 class OfferMail(models.Model):
@@ -152,4 +152,4 @@ def order_status_handler(sender, instance, created, **kwargs):
                             month_of_year=instance.schedule_date.month
                             )
         
-        task = PeriodicTask.objects.create(crontab=schedule, name='notification-' + str(instance.id), task='food_delivery_app.task.SendNotification')
+        task = PeriodicTask.objects.create(crontab=schedule, name='notification-' + str(instance.id), task='food_delivery_app.task.SendNotification', args=[instance.id])

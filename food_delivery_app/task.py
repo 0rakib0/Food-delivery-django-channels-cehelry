@@ -4,6 +4,7 @@ import json
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.conf import settings
+import asyncio
 
 @shared_task(bind=True)
 def Email_send(self, data):
@@ -26,9 +27,9 @@ def Email_send(self, data):
     
     return "Task Compleated"
 
-@shared_task
-def SendNotification():
-    for i in range(10):
-        print(i)
+@shared_task(bind=True)
+def SendNotification(self, id):
+    
         
-    return 'Notification Sended...'
+
+    return f"Notification send from ID: {id}"

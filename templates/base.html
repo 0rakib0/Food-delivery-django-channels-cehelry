@@ -109,14 +109,37 @@
             <a class="link link-hover">Cookie policy</a>
         </nav>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"
-        integrity="sha512-DdX/YwF5e41Ok+AI81HI8f5/5UsoxCVT9GKYZRIzpLxb8Twz4ZwPPX+jQMwMhNQ9b5+zDEefc+dcvQoPWGNZ3g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
+
+<!-- 
+    <script>
+        let ws_notification_send = new WebSocket('ws://127.0.0.1:8000/ws/send-notification/')
+
+        ws_notification_send.onopen = e => {
+            console.log("Websocket succceffully connected from notification.....")
+        }
+
+        ws_notification_send.onmessage = e => {
+            console.log("Websocket succceffully get message.....")
+            console.log(e)
+        }
+
+        ws_notification_send.onerror = e => {
+            console.log(e)
+        }
+
+        ws_notification_send.onclose = e => {
+            console.log("Websocket Connection lost..")
+        }
+    </script> -->
 
 
     <script src="{% static 'index.js' %}"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"
+        integrity="sha512-DdX/YwF5e41Ok+AI81HI8f5/5UsoxCVT9GKYZRIzpLxb8Twz4ZwPPX+jQMwMhNQ9b5+zDEefc+dcvQoPWGNZ3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 
 </html>
