@@ -29,6 +29,7 @@
 
 .notification-items{
     position: absolute;
+    background-color: rgb(243, 243, 243);
     width: 16rem;
     padding: 10px 5px;
     list-style: none;

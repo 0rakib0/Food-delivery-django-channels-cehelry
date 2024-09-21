@@ -44,7 +44,7 @@ def SendNotification(self, id):
                     'notification_brotcast',
                     {
                         'type':'notifiction_send',
-                        'data':'Hello Bangladesh'
+                        'data':notification.notification_title
                     }
                 )
             )

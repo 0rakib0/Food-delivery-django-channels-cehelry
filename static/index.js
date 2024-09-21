@@ -46,7 +46,25 @@ ws_notification_send.onopen = e => {
 
 ws_notification_send.onmessage = e => {
     console.log("WebSocket successfully received message.....");
-    console.log(e)
+    
+    const data = e.data
+
+    const newItem = document.createElement('li');
+    newItem.textContent = data;
+
+    // Get the notification list and prepend the new item
+    const notificationList = document.getElementById('notification-list');
+    notificationList.insertBefore(newItem, notificationList.firstChild);
+
+    // Optionally, you can add a separator
+    const separator = document.createElement('hr');
+    notificationList.insertBefore(separator, newItem.nextSibling);
+
+
+    const notificationCountElement = document.getElementById('notification-count');
+    let currentCount = parseInt(notificationCountElement.textContent, 10) || 0;
+    notificationCountElement.textContent = String(currentCount + 1).padStart(2, '0');
+    
 };
 
 ws_notification_send.onerror = e => {

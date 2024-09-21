@@ -4,13 +4,14 @@ from .models import Product
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
-from .models import Product, Order
+from .models import Product, Order, Notification
 from django.contrib.auth.models import User
 # Create your views here.
 
 def Home(request):
     products = Product.objects.filter(is_post=True)
-    return render(request, 'home.html', context={'products':products})
+    notification = Notification.objects.all()
+    return render(request, 'home.html', context={'products':products, 'notification':notification})
 
 
 def OrderList(request):

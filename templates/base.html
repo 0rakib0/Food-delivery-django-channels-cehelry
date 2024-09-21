@@ -60,18 +60,14 @@
             <div class="notification-bolx">
                 <div id="logo-popup" class="nofitication-logo flex items-center">
                     <img src="{% static 'image/bell.png' %}" alt="">
-                    <span>17</span>
+                    <span id='notification-count'>0</span>
                 </div>
                 <div id="noti-item" class="notification-items hidden">
-
-                    <li>Hello Bangladesh I am Rakib</li>
-                    <hr>
-                    <li>Hello Bangladesh I am Rakib</li>
-                    <hr>
-                    <li>Hello Bangladesh I am Rakib</li>
-                    <hr>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut, animi.</li>
-                    <hr>
+                    <ul id="notification-list">
+                        {% for i in notification %}
+                        <li>{{i.notification_title}}</li>
+                        <hr>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

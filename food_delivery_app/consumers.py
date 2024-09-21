@@ -63,11 +63,10 @@ class SendNotification(AsyncConsumer):
         
         
     async def notifiction_send(self, event):
-        
-        order_data = event['data']
+        notification_data = event['data']
         await self.send({
             'type':'websocket.send',
-            'text':json.dumps(order_data)
+            'text': notification_data
         })
         
         

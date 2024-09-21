@@ -79,7 +79,6 @@ class Order(models.Model):
     
 
 class Notification(models.Model):
-    notification = models.CharField(max_length=260),
     notification_title = models.CharField(max_length=120)
     schedule_date = models.DateTimeField()
     is_sent = models.BooleanField(default=False)
